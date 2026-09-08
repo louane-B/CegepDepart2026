@@ -54,17 +54,17 @@ namespace ProjetCegep
         /// </summary>
         public void RemplirListes()
         {
-             lbxDepartement.Items.Clear();
-             lbxDepartementInfoCegep.Items.Clear();
-             cbxDepartementEnseignant.Items.Clear();
-             if (monCegep != null)
-                 foreach (Departement departement in monCegep.ObtenirListeDepartement())
-                 {
-                    lbxDepartement.Items.Add(departement.ToString());
-                    lbxDepartementInfoCegep.Items.Add(departement.ToString());
-                    cbxDepartementEnseignant.Items.Add(departement.ToString());
-                 }
-        }
+             //lbxDepartement.Items.Clear();
+             //lbxDepartementInfoCegep.Items.Clear();
+             //cbxDepartementEnseignant.Items.Clear();
+             //if (monCegep != null)
+             //    foreach (Departement departement in monCegep.ObtenirListeDepartement())
+             //    {
+             //       lbxDepartement.Items.Add(departement.ToString());
+             //       lbxDepartementInfoCegep.Items.Add(departement.ToString());
+            //        cbxDepartementEnseignant.Items.Add(departement.ToString());
+           //      }
+        //}
 
         //Onglet Gestion enseignants...
 
