@@ -240,8 +240,7 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnAjouterCegep_Click(object sender, EventArgs e)
         {
-            monCegep = new Cegep(edtNomCegep.Text, edtAdresseCegep.Text, edtVilleCegep.Text, edtProvinceCegep.Text, edtCodePostalCegep.Text, edtTelephoneCegep.Text, edtCourrielCegep.Text);
-            MessageBox.Show(monCegep.ToString() + "\n a bien été crée.");
+            CegepDTO unCegep = new CegepDTO();
         }
 
         /// <summary>

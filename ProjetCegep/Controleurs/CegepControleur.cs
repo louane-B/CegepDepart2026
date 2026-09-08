@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjetCegep.DTOs;
 using ProjetCegep.Modeles;
 
 namespace ProjetCegep.Controleurs
@@ -45,6 +46,27 @@ namespace ProjetCegep.Controleurs
         public void ChargerDonneesFichier()
         {
 
+        }
+
+        public bool ModifierCegep(CegepDTO cegep)
+        {
+            if(monCegep.Nom.Equals(cegep.Nom))
+                if(monCegep.Adresse != cegep.Adresse ||
+                    monCegep.Ville != cegep.Ville ||
+                    monCegep.Province != cegep.Province ||
+                    monCegep.CodePostal != cegep.CodePostal ||
+                    monCegep.Telephone != cegep.Telephone ||
+                    monCegep.Courriel != cegep.Courriel)
+                {
+                    monCegep.Adresse = cegep.Adresse;
+                    monCegep.Ville = cegep.Ville;
+                    monCegep.Province = cegep.Province;
+                    monCegep.CodePostal = cegep.CodePostal;
+                    monCegep.Telephone = cegep.Telephone;
+                    monCegep.Courriel != cegep.Courriel;
+                    return true;
+                }
+            return false;
         }
     }
 }
