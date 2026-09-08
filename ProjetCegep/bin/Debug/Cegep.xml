@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Cegep xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <listeDepartement>
+    <Departement>
+      <listeEnseignant>
+        <Enseignant>
+          <Prenom>Denis</Prenom>
+          <Nom>Morissette</Nom>
+          <Adresse>127, Lafontaine</Adresse>
+          <Ville>Rivière-du-Loup</Ville>
+          <Province>Québec</Province>
+          <CodePostal>G5R 5E7</CodePostal>
+          <Telephone>418-868-9922</Telephone>
+          <Courriel>denmor@gmail.com</Courriel>
+          <NoEmploye>1122</NoEmploye>
+        </Enseignant>
+      </listeEnseignant>
+      <No>420-RL</No>
+      <Nom>Techniques de l'informatique</Nom>
+      <Description>Informatique de gestion.  </Description>
+    </Departement>
+  </listeDepartement>
+  <Nom>Cégep Rivière-du-Loup</Nom>
+  <Adresse>80 Frontenac</Adresse>
+  <Ville>Rivière-du-Loup</Ville>
+  <Province>Québec</Province>
+  <CodePostal>G5R 5E7</CodePostal>
+  <Telephone>418-862-6903</Telephone>
+  <Courriel>info@cegeprdl.ca</Courriel>
+</Cegep>

@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProjetCegep</name>
+    </assembly>
+    <members>
+        <member name="M:ProjetCegep.Cegep.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructeur paramétré
+            </summary>
+            <param name="unNom">Le nom du cégep</param>
+            <param name="uneAdresse">L'adresse du cégep</param>
+            <param name="uneVille">La ville du cégep</param>
+            <param name="uneProvince">La province du cégep</param>
+            <param name="unCodePostal">Le code postal du cégep</param>
+            <param name="unTelephone">Le téléphone du cégep</param>
+            <param name="unCourriel">Le courriel du cégep</param>
+        </member>
+        <member name="M:ProjetCegep.Cegep.ObtenirListeDepartement">
+            <summary>
+            Permet l'obtenir la liste des départements du cégep
+            </summary>
+            <returns>un tableau de département</returns>
+        </member>
+        <member name="M:ProjetCegep.Cegep.ObtenirDepartement(ProjetCegep.Departement)">
+            <summary>
+            Permet d'obtenir un département.
+            </summary>
+            <param name="unDepartement">L'objet département que l'on veut avoir</param>
+            <returns>le département qui correspond ou null si l'on a rien trouvé</returns>
+        </member>
+        <member name="M:ProjetCegep.Cegep.SiDepartementPresent(ProjetCegep.Departement)">
+            <summary>
+            Vérifier si un département est présent dans la liste
+            </summary>
+            <param name="unDepartement">Le département que l'on cherche</param>
+            <returns>vrai si le département est trouvé, faux sinon</returns>
+        </member>
+        <member name="M:ProjetCegep.Cegep.AjouterDepartement(ProjetCegep.Departement)">
+            <summary>
+            Permet d'ajouter un département à la liste.
+            </summary>
+            <param name="unDepartement">Le département à ajouter</param>
+            <returns>Vrai si le département c'est bien ajouté, faux sinon</returns>
+        </member>
+        <member name="M:ProjetCegep.Etudiant.#ctor(System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Boolean)">
+            <summary>
+            Constructeur paramétré
+            </summary>
+            <param name="unNoDA">le no d'étudiant</param>
+            <param name="unPrenom">le prénom de l'étudiant</param>
+            <param name="unNom">le nom de l'étudiant</param>
+            <param name="uneAdresse">l'adresse de l'étudiant</param>
+            <param name="uneVille">la ville de l'étudiant</param>
+            <param name="uneProvince">la province de l'étudiant</param>
+            <param name="unCodePostal">le code postal de l'étudiant</param>
+            <param name="unTelephone">le téléphone de l'étudiant</param>
+            <param name="unCourriel">le courriel de l'étudiant</param>
+            <param name="uneDateInscription">la date d'inscription de l'étudiant</param>
+            <param name="unEtat">L'état de l'étudiant s'il est actif au cégep ou non</param>
+        </member>
+        <member name="M:ProjetCegep.Etudiant.ToString">
+            <summary>
+            Redéfinition de la méthode ToString pour l'affichage d'un étudiant
+            </summary>
+            <returns>la chaine de caractère qui sera affiché</returns>
+        </member>
+        <member name="M:ProjetCegep.Etudiant.Equals(System.Object)">
+            <summary>
+            Redéfinition de la méthode Equals qui se fait à partir du NoDA
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProjetCegep.Etudiant.GetHashCode">
+            <summary>
+            Redéfinition de la méthode GetHashCode à partir du numéro de demande d'admission (no étudiant)
+            </summary>
+            <returns>le no généré par la méthode GetHashCode à partir du noDA</returns>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.#ctor">
+            <summary>
+            Constructeur du formulaire Gestion Cégep
+            </summary>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.QuitterToolStripMenuItem_Click(System.Object,System.EventArgs)">
+            <summary>
+            Méthode qui permet d'enregistrer le cégep et les listes dans un fichier XML.  Par la suite, on quitte l'application 
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.RemplirListes">
+            <summary>
+            Permet de remplir les différentes listes du formulaire 
+            </summary>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.AfficherListeEnseignantGestionEnseignant(ProjetCegep.Departement)">
+            <summary>
+            Méthode qui permet de mettre à jour les différentes listes d'enseignants
+            </summary>
+            <param name="unDepartement">Le département qui à été sélectionné</param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.BtnAjouterEnseignant_Click(System.Object,System.EventArgs)">
+            <summary>
+            Méthode qui permet d'ajouter un enseignant dans un département qui a été sélectionné dans la liste
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.CbxDepartementEnseignant_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Méthode qui permet d'afficher la liste des enseignants après avoir sélectionner un département dans la liste
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.BtnModifierEnseignant_Click(System.Object,System.EventArgs)">
+            <summary>
+            Méthode qui permet de modifier un enseignant déjà dans la liste
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.BtnSupprimerEnseignant_Click(System.Object,System.EventArgs)">
+            <summary>
+            Méthode pour supprimer un enseignant de la liste de sont département
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.BtnAjouterDepartement_Click(System.Object,System.EventArgs)">
+            <summary>
+            Méthode qui permet d'ajouter un départemetn à la liste des départements du cégep
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.BtnSupprimerGestionDepartement_Click(System.Object,System.EventArgs)">
+            <summary>
+            Métode qui permet de supprimer un département de la liste des département du cégep
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.BtnAjouterCegep_Click(System.Object,System.EventArgs)">
+            <summary>
+            Méthode qui permet de créer un cégep avec le constructeur paramétré.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.BtnModifierCegep_Click(System.Object,System.EventArgs)">
+            <summary>
+            Méthode qui permet de modifier les informations du cégep
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.BtnSupprimerCegep_Click(System.Object,System.EventArgs)">
+            <summary>
+            Méthode qui permet de suprimmer l'objet cégep
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.FormGestionCegep_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:ProjetCegep.FormGestionCegep.components">
+            <summary>
+            Variable nécessaire au concepteur.
+            </summary>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.Dispose(System.Boolean)">
+            <summary>
+            Nettoyage des ressources utilisées.
+            </summary>
+            <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
+        </member>
+        <member name="M:ProjetCegep.FormGestionCegep.InitializeComponent">
+            <summary>
+            Méthode requise pour la prise en charge du concepteur - ne modifiez pas
+            le contenu de cette méthode avec l'éditeur de code.
+            </summary>
+        </member>
+        <member name="M:ProjetCegep.Program.Main">
+            <summary>
+            Point d'entrée principal de l'application.
+            </summary>
+        </member>
+        <member name="T:ProjetCegep.Properties.Resources">
+            <summary>
+              Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
+            </summary>
+        </member>
+        <member name="P:ProjetCegep.Properties.Resources.ResourceManager">
+            <summary>
+              Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
+            </summary>
+        </member>
+        <member name="P:ProjetCegep.Properties.Resources.Culture">
+            <summary>
+              Remplace la propriété CurrentUICulture du thread actuel pour toutes
+              les recherches de ressources à l'aide de cette classe de ressource fortement typée.
+            </summary>
+        </member>
+    </members>
+</doc>
