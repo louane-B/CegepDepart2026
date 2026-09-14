@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
+using ProjetCegep.Controleurs;
+using ProjetCegep.DTOs;
 
 namespace ProjetCegep
 {
@@ -192,11 +194,11 @@ namespace ProjetCegep
         /// <param name="e"></param>
         private void BtnAjouterDepartement_Click(object sender, EventArgs e)
         {
-            Departement unDepartement;
+            DepartementDTO unDepartement;
 
-            unDepartement = new Departement(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
+            unDepartement = new DepartementDTO(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
 
-            if (monCegep.AjouterDepartement(unDepartement))
+            if (CegepControleur.Instance.AjouterDepartement(unDepartement))
             {
                 RemplirListes();
                 MessageBox.Show(unDepartement.ToString() + "\na bien été crée.");

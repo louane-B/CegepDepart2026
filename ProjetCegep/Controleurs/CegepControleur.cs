@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ProjetCegep.DTOs;
 using ProjetCegep.Modeles;
 
+
 namespace ProjetCegep.Controleurs
 {
     public class CegepControleur
@@ -68,5 +69,7 @@ namespace ProjetCegep.Controleurs
                 }
             return false;
         }
+
+        public bool ajouterDepartement()
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ProjetCegep
+namespace ProjetCegep.Modeles
 {
     public class Cegep
     {
