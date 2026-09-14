@@ -13,6 +13,7 @@ namespace ProjetCegep.Controleurs
 {
     public class CegepControleur
     {
+        #region Singleton
         /// <summary>
         /// 
         /// </summary>
@@ -37,7 +38,9 @@ namespace ProjetCegep.Controleurs
                 return instance;
             }
         }
+        #endregion Singleton
 
+        #region Utilitaire
         public void ChargerDonneesFichier()
         {
             if (File.Exists("Cegep.xml"))
@@ -50,6 +53,9 @@ namespace ProjetCegep.Controleurs
                 fichierLogique.Close();
             }
         }
+        #endregion Utilitaire
+
+        #region Constructor
         /// <summary>
         /// 
         /// </summary>
@@ -57,7 +63,9 @@ namespace ProjetCegep.Controleurs
         {
             monCegep = null;
         }
+        #endregion Constructor
 
+        #region MethodeCegep
         /// <summary>
         /// 
         /// </summary>
@@ -111,6 +119,7 @@ namespace ProjetCegep.Controleurs
                 return new CegepDTO(monCegep);
             return null;
         }
+        #endregion MethodeCegep
 
         public bool ajouterDepartement()
         {
