@@ -5,11 +5,10 @@ using System.Xml.Serialization;
 using ProjetCegep.Controleurs;
 using ProjetCegep.DTOs;
 
-namespace ProjetCegep
+namespace ProjetCegep.Vues
 {
    public partial class FormGestionCegep : Form
    {
-        Cegep monCegep;  //Objet Cégep qui comprend la structure complète d'un cégep...
 
         /// <summary>
         /// Constructeur du formulaire Gestion Cégep
@@ -17,17 +16,8 @@ namespace ProjetCegep
         public FormGestionCegep()
         {
             InitializeComponent();
-            if (File.Exists("Cegep.xml"))
-            {
-                XmlSerializer leFichierCegep = new XmlSerializer(typeof(Cegep));
-                FileStream fichierLogique;
-
-                fichierLogique = File.OpenRead("Cegep.xml");
-                monCegep = (Cegep)leFichierCegep.Deserialize(fichierLogique);
-                fichierLogique.Close();
-
-                RemplirListes();
-            }
+            CegepControleur.Instance.ChargerDonneesFichier();
+            RemplirListes();
         }
 
         /// <summary>
