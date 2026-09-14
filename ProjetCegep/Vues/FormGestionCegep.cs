@@ -49,14 +49,14 @@ namespace ProjetCegep.Vues
              //lbxDepartement.Items.Clear();
              //lbxDepartementInfoCegep.Items.Clear();
              //cbxDepartementEnseignant.Items.Clear();
-             //if (monCegep != null)
-             //    foreach (Departement departement in monCegep.ObtenirListeDepartement())
+             //if (CegepControleur.Instance.ObtenirCegep() != null)
+             //    foreach (DepartementDTO departement in CegepControleur.ObtenirListeDepartement())
              //    {
-             //       lbxDepartement.Items.Add(departement.ToString());
-             //       lbxDepartementInfoCegep.Items.Add(departement.ToString());
-            //        cbxDepartementEnseignant.Items.Add(departement.ToString());
-           //      }
-        //}
+             //       lbxDepartement.Items.Add(departement.Nom);
+             //       lbxDepartementInfoCegep.Items.Add(departement.Nom);
+             //       cbxDepartementEnseignant.Items.Add(departement.Nom);
+             //    }
+        }
 
         //Onglet Gestion enseignants...
 
@@ -223,7 +223,7 @@ namespace ProjetCegep.Vues
             Refresh();
         }
 
-        //Onglet Info Cégep
+        #region InfoCégep
 
         /// <summary>
         /// Méthode qui permet de créer un cégep avec le constructeur paramétré.
@@ -232,7 +232,8 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void BtnAjouterCegep_Click(object sender, EventArgs e)
         {
-            CegepDTO unCegep = new CegepDTO();
+            CegepControleur.Instance.CreerCegep(new CegepDTO(edtNomCegep.Text, edtAdresseCegep.Text, edtVilleCegep.Text, edtProvinceCegep.Text, edtCodePostalCegep.Text, edtTelephoneCegep.Text, edtCourrielCegep.Text));
+            MessageBox.Show(edtNomCegep.Text + "\n a bien été crée.");
         }
 
         /// <summary>
@@ -242,15 +243,8 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void BtnModifierCegep_Click(object sender, EventArgs e)
         {
-            monCegep.Nom = edtNomCegep.Text;
-            monCegep.Adresse = edtAdresseCegep.Text;
-            monCegep.Ville = edtVilleCegep.Text;
-            monCegep.Province = edtProvinceCegep.Text;
-            monCegep.CodePostal = edtCodePostalCegep.Text;
-            monCegep.Telephone = edtTelephoneCegep.Text;
-            monCegep.Courriel = edtCourrielCegep.Text;
-
-            MessageBox.Show(monCegep.ToString() + "\na bien été modifié.");
+            if (CegepControleur.Instance.ModifierCegep(new CegepDTO(edtNomCegep.Text, edtAdresseCegep.Text, edtVilleCegep.Text, edtProvinceCegep.Text, edtCodePostalCegep.Text, edtTelephoneCegep.Text, edtCourrielCegep.Text)))
+                MessageBox.Show(edtNomCegep + "\n a bien été modifié.");
         }
 
         /// <summary>
@@ -260,12 +254,12 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void BtnSupprimerCegep_Click(object sender, EventArgs e)
         {
-            string nomCegep;
-            nomCegep = monCegep.Nom;
-
-            monCegep = null;
-            MessageBox.Show(nomCegep + " a bien été supprimé.");
-            RemplirListes();
+            string nomCegep = CegepControleur.Instance.ObtenirCegep().Nom;
+            if (CegepControleur.Instance.SupprimerCegep())
+            {
+                MessageBox.Show(nomCegep + " a bien été supprimé.");
+                RemplirListes();
+            }
         }
 
         /// <summary>
@@ -277,5 +271,7 @@ namespace ProjetCegep.Vues
         {
             QuitterToolStripMenuItem_Click(this, null);
         }
+
+        #endregion InfoCegep
     }
 }
