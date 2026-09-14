@@ -44,11 +44,22 @@ namespace ProjetCegep.Controleurs
             monCegep = null;
         }
 
-        public void ChargerDonneesFichier()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cegep"></param>
+        /// <returns></returns>
+        public bool CreerCegep(CegepDTO cegep)
         {
-
+            monCegep = new Cegep(cegep.Nom, cegep.Adresse, cegep.Ville, cegep.Province, cegep.CodePostal, cegep.Telephone, cegep.Courriel);
+            return monCegep != null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cegep"></param>
+        /// <returns></returns>
         public bool ModifierCegep(CegepDTO cegep)
         {
             if(monCegep.Nom.Equals(cegep.Nom))
@@ -64,12 +75,32 @@ namespace ProjetCegep.Controleurs
                     monCegep.Province = cegep.Province;
                     monCegep.CodePostal = cegep.CodePostal;
                     monCegep.Telephone = cegep.Telephone;
-                    monCegep.Courriel != cegep.Courriel;
+                    monCegep.Courriel = cegep.Courriel;
                     return true;
                 }
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool SupprimerCegep()
+        {
+            monCegep = null;
+            return monCegep == null;
+        }
+
+        public CegepDTO ObtenirCegep()
+        {
+            if (monCegep != null)
+                return new CegepDTO(monCegep);
+            return null;
+        }
+
         public bool ajouterDepartement()
+        {
+
+        }
     }
 }
