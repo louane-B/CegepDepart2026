@@ -121,9 +121,15 @@ namespace ProjetCegep.Controleurs
         }
         #endregion MethodeCegep
 
-        public bool ajouterDepartement()
+        public DepartementDTO[] ObtenirListeDepartement()
         {
-
+            if (monCegep == null)
+                return null;
+            Departement[] departements = monCegep.ObtenirListeDepartement();
+            DepartementDTO[] departementDTOs = new DepartementDTO[departements.Length];
+            for (int i = 0; i<departements.Length; i++)
+               departementDTOs[i] = new DepartementDTO(departements[i]);
+            return departementDTOs;
         }
     }
 }
