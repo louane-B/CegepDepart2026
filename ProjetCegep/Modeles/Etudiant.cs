@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProjetCegep
+namespace ProjetCegep.Modeles
 {
     public class Etudiant : Personne
     {

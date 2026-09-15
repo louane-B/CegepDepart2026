@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjetCegep.Modeles;
 
 namespace ProjetCegep.DTOs
 {
@@ -24,11 +25,33 @@ namespace ProjetCegep.DTOs
 
         public List<string> Departements { get; set; }
 
-        public CegepDTO()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="adresse"></param>
+        /// <param name="ville"></param>
+        /// <param name="province"></param>
+        /// <param name="codePostal"></param>
+        /// <param name="telephone"></param>
+        /// <param name="courriel"></param>
+        /// <param name="departements"></param>
+        public CegepDTO(string nom="", string adresse="", string ville="", string province="", string codePostal="", string telephone="", string courriel="")
         {
+            Nom = nom;
+            Adresse = adresse;
+            Ville = ville;
+            Province = province;
+            CodePostal = codePostal;
+            Telephone = telephone;
+            Courriel = courriel;
             Departements = new List<string>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="unCegep"></param>
         public CegepDTO(Cegep unCegep)
         {
             Nom = unCegep.Nom;

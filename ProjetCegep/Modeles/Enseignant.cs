@@ -1,5 +1,5 @@
 ﻿
-namespace ProjetCegep
+namespace ProjetCegep.Modeles
 {
     public class Enseignant : Personne
     {

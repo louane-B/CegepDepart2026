@@ -1,5 +1,5 @@
 ﻿
-namespace ProjetCegep
+namespace ProjetCegep.Vues
 {
    partial class FormGestionCegep
    {
