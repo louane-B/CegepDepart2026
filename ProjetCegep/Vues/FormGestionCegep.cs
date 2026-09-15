@@ -46,19 +46,19 @@ namespace ProjetCegep.Vues
         /// </summary>
         public void RemplirListes()
         {
-             //lbxDepartement.Items.Clear();
-             //lbxDepartementInfoCegep.Items.Clear();
-             //cbxDepartementEnseignant.Items.Clear();
-             //if (CegepControleur.Instance.ObtenirCegep() != null)
-             //    foreach (DepartementDTO departement in CegepControleur.ObtenirListeDepartement())
-             //    {
-             //       lbxDepartement.Items.Add(departement.Nom);
-             //       lbxDepartementInfoCegep.Items.Add(departement.Nom);
-             //       cbxDepartementEnseignant.Items.Add(departement.Nom);
-             //    }
+             lbxDepartement.Items.Clear();
+             lbxDepartementInfoCegep.Items.Clear();
+             cbxDepartementEnseignant.Items.Clear();
+             if (CegepControleur.Instance.ObtenirCegep() != null)
+                 foreach (DepartementDTO departement in CegepControleur.ObtenirListeDepartement())
+                 {
+                    lbxDepartement.Items.Add(departement.Nom);
+                    lbxDepartementInfoCegep.Items.Add(departement.Nom);
+                    cbxDepartementEnseignant.Items.Add(departement.Nom);
+                 }
         }
 
-        //Onglet Gestion enseignants...
+        #region Onglet Gestion enseignants...
 
         /// <summary>
         /// Méthode qui permet de mettre à jour les différentes listes d'enseignants
@@ -174,6 +174,7 @@ namespace ProjetCegep.Vues
                 MessageBox.Show("Erreur dans la sélection du département.");
             }
         }
+        #endregion Onglet Gestion enseignants...
 
         //Onglet Gestion départements
 

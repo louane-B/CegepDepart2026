@@ -27,6 +27,7 @@ namespace ProjetCegep.DTOs
             Nom = leDepartement.Nom;
             Description = leDepartement.Description;
         }
+
         public override string ToString()
         {
             return $"{No} - {Nom} : {Description}";

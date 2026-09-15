@@ -45,7 +45,6 @@ namespace ProjetCegep.DTOs
             CodePostal = codePostal;
             Telephone = telephone;
             Courriel = courriel;
-            Departements = new List<string>();
         }
 
         /// <summary>
@@ -61,12 +60,6 @@ namespace ProjetCegep.DTOs
             CodePostal = unCegep.CodePostal;
             Telephone = unCegep.Telephone;
             Courriel = unCegep.Courriel;
-
-            Departements = new List<string>();
-            foreach (var departement in unCegep.ObtenirListeDepartement())
-            {
-                Departements.Add($"{departement.No} {departement.Nom}");
-            }
         }
     }
 }
