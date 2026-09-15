@@ -50,7 +50,7 @@ namespace ProjetCegep.Vues
              lbxDepartementInfoCegep.Items.Clear();
              cbxDepartementEnseignant.Items.Clear();
              if (CegepControleur.Instance.ObtenirCegep() != null)
-                 foreach (DepartementDTO departement in CegepControleur.ObtenirListeDepartement())
+                 foreach (DepartementDTO departement in CegepControleur.Instance.ObtenirListeDepartement())
                  {
                     lbxDepartement.Items.Add(departement.Nom);
                     lbxDepartementInfoCegep.Items.Add(departement.Nom);
