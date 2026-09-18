@@ -54,6 +54,25 @@ namespace ProjetCegep.Controleurs
                 fichierLogique.Close();
             }
         }
+
+        ///<summary>
+        ///
+        /// </summary>
+        public void SauvegarderDonnesFichier()
+        {
+            if (File.Exists("Cegep.xml"))
+            {
+                File.Delete("Cegep.xml");
+            }
+            XmlSerializer leFichierCegep = new XmlSerializer(typeof(Cegep));
+            FileStream fichierLogique;
+
+            using (fichierLogique = File.OpenWrite("Cegep.xml"))
+            {
+                leFichierCegep.Serialize(fichierLogique, monCegep);
+            }
+        }
+
         #endregion Utilitaire
 
         #region Constructor

@@ -27,17 +27,7 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void QuitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists("Cegep.xml"))
-            {
-                File.Delete("Cegep.xml");
-            }
-            XmlSerializer leFichierCegep = new XmlSerializer(typeof(Cegep));
-            FileStream fichierLogique;
-
-            using (fichierLogique = File.OpenWrite("Cegep.xml"))
-            {
-                leFichierCegep.Serialize(fichierLogique, monCegep);
-            }
+            CegepControleur.Instance.SauvegarderDonnesFichier();
             Application.Exit();
         }
 
