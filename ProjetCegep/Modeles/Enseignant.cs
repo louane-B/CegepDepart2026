@@ -10,9 +10,23 @@ namespace ProjetCegep.Modeles
             set { noEmploye = value; }
         }
 
+        private string dateEmbauche;
+        public string DateEmbauche
+        {
+            get { return dateEmbauche; }
+            set { dateEmbauche = value; }
+        }
+
+        private string dateArret;
+        public string DateArret
+        {
+            get { return dateArret; }
+            set { dateArret = value; }
+        }
+
         public Enseignant() { }
 
-        public Enseignant(int unNoEmploye = 0000000, string unPrenom = "", string unNom = "", string uneAdresse = "", string uneVille = "", string uneProvince = "", string unCodePostal = "", string unTelephone = "", string unCourriel = "")
+        public Enseignant(int unNoEmploye = 0000000, string unPrenom = "", string unNom = "", string uneAdresse = "", string uneVille = "", string uneProvince = "", string unCodePostal = "", string unTelephone = "", string unCourriel = "", string uneDateEmbauche="", string uneDateArret="")
         {
             NoEmploye = unNoEmploye;
             Prenom = unPrenom;
@@ -23,6 +37,9 @@ namespace ProjetCegep.Modeles
             CodePostal = unCodePostal;
             Telephone = unTelephone;
             Courriel = unCourriel;
+            DateEmbauche = uneDateEmbauche;
+            DateArret = uneDateArret;
+            
         }
 
         public override string ToString()
