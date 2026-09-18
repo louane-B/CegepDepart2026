@@ -139,6 +139,20 @@ namespace ProjetCegep.Controleurs
             return listDepartementDTOs;
         }
 
+        public DepartementDTO ObtenirDepartement(DepartementDTO departement)
+        {
+            foreach(DepartementDTO departementDTO in ObtenirListeDepartement())
+            {
+                if(departementDTO.No == departement.No)
+                {
+                    return departementDTO;
+                }
+                return null;
+            }
+            return null;
+        }
+
+
         #endregion MethodeDepartement
     }
 }
