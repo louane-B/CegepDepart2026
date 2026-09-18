@@ -179,20 +179,17 @@ namespace ProjetCegep.Vues
         #region Onglet Gestion départements
 
         /// <summary>
-        /// Méthode qui permet d'ajouter un départemetn à la liste des départements du cégep
+        /// Méthode qui permet d'ajouter un département à la liste des départements du cégep
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnAjouterDepartement_Click(object sender, EventArgs e)
         {
-            DepartementDTO unDepartement;
 
-            unDepartement = new DepartementDTO(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
-
-            if (CegepControleur.Instance.AjouterDepartement(unDepartement))
+            if (CegepControleur.Instance.AjouterDepartement(new DepartementDTO(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text)))
             {
                 RemplirListes();
-                MessageBox.Show(unDepartement.ToString() + "\na bien été crée.");
+                MessageBox.Show(edtNoDepartement.Text+ " " + edtNomDepartement.Text + "\na bien été crée.");
             }
             else
             {

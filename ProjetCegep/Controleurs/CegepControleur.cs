@@ -18,6 +18,7 @@ namespace ProjetCegep.Controleurs
         /// 
         /// </summary>
         private Cegep monCegep;
+        private Departement newDepartement;
 
         /// <summary>
         /// 
@@ -152,6 +153,11 @@ namespace ProjetCegep.Controleurs
             return null;
         }
 
+        public bool AjouterDepartement(DepartementDTO departement)
+        {
+            newDepartement = new Departement(departement.No, departement.Nom, departement.Description);
+            return newDepartement != null;
+        }
 
         #endregion MethodeDepartement
     }
