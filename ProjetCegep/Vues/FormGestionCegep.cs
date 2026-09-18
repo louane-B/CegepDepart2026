@@ -176,7 +176,7 @@ namespace ProjetCegep.Vues
         }
         #endregion Onglet Gestion enseignants...
 
-        //Onglet Gestion départements
+        #region Onglet Gestion départements
 
         /// <summary>
         /// Méthode qui permet d'ajouter un départemetn à la liste des départements du cégep
@@ -223,6 +223,7 @@ namespace ProjetCegep.Vues
             }
             Refresh();
         }
+        #endregion
 
         #region InfoCégep
 
