@@ -9,7 +9,7 @@ namespace ProjetCegep.Vues
 {
    public partial class FormGestionCegep : Form
    {
-
+        #region MethodeUtilitaire
         /// <summary>
         /// Constructeur du formulaire Gestion Cégep
         /// </summary>
@@ -47,6 +47,7 @@ namespace ProjetCegep.Vues
                     cbxDepartementEnseignant.Items.Add(departement.Nom);
                  }
         }
+        #endregion
 
         #region Onglet Gestion enseignants...
 
@@ -179,7 +180,7 @@ namespace ProjetCegep.Vues
             if (CegepControleur.Instance.AjouterDepartement(new DepartementDTO(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text)))
             {
                 RemplirListes();
-                MessageBox.Show(edtNoDepartement.Text+ " " + edtNomDepartement.Text + "\na bien été crée.");
+                MessageBox.Show("Le départements " + edtNomDepartement.Text + "\na bien été crée.");
             }
             else
             {
@@ -195,14 +196,17 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void BtnSupprimerGestionDepartement_Click(object sender, EventArgs e)
         {
-            Departement unDepartement;
+            DepartementDTO departementSelectionne = (DepartementDTO)lbxDepartement.SelectedItem;
+            if(departementSelectionne == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un département.");
+                return;
+            }
 
-            unDepartement = new Departement(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
-
-            if (monCegep.EnleverDepartement(unDepartement))
+            if (CegepControleur.Instance.SupprimerDepartement(departementSelectionne))
             {
                 RemplirListes();
-                MessageBox.Show(unDepartement.ToString() + "\na bien été enlevé.");
+                MessageBox.Show(departementSelectionne.Nom + "\na bien été enlevé.");
             }
             else
             {

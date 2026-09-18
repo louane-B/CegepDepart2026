@@ -41,7 +41,7 @@ namespace ProjetCegep.Controleurs
         }
         #endregion Singleton
 
-        #region Utilitaire
+        #region MethodeSerializer
         public void ChargerDonneesFichier()
         {
             if (File.Exists("Cegep.xml"))
@@ -176,6 +176,19 @@ namespace ProjetCegep.Controleurs
         {
             newDepartement = new Departement(departement.No, departement.Nom, departement.Description);
             return newDepartement != null;
+        }
+
+        public bool SupprimerDepartement(DepartementDTO departement)
+        {
+            foreach (Departement unDepartement in monCegep.listeDepartement)
+            {
+                if (unDepartement.No == departement.No)
+                {
+                    monCegep.listeDepartement.Remove(unDepartement);
+                    return true;
+                }
+            }
+            return false;
         }
 
         #endregion MethodeDepartement

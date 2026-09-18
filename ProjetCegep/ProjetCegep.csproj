@@ -95,6 +95,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\Cegep.xml" />
     <Content Include="bin\Debug\ProjetCegep.exe" />
     <Content Include="bin\Debug\ProjetCegep.pdb" />
   </ItemGroup>
