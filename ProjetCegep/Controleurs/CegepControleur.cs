@@ -18,6 +18,7 @@ namespace ProjetCegep.Controleurs
         /// 
         /// </summary>
         private Cegep monCegep;
+        private Departement newDepartement;
 
         /// <summary>
         /// 
@@ -40,7 +41,7 @@ namespace ProjetCegep.Controleurs
         }
         #endregion Singleton
 
-        #region Utilitaire
+        #region MethodeSerializer
         public void ChargerDonneesFichier()
         {
             if (File.Exists("Cegep.xml"))
@@ -53,6 +54,25 @@ namespace ProjetCegep.Controleurs
                 fichierLogique.Close();
             }
         }
+
+        ///<summary>
+        ///
+        /// </summary>
+        public void SauvegarderDonnesFichier()
+        {
+            if (File.Exists("Cegep.xml"))
+            {
+                File.Delete("Cegep.xml");
+            }
+            XmlSerializer leFichierCegep = new XmlSerializer(typeof(Cegep));
+            FileStream fichierLogique;
+
+            using (fichierLogique = File.OpenWrite("Cegep.xml"))
+            {
+                leFichierCegep.Serialize(fichierLogique, monCegep);
+            }
+        }
+
         #endregion Utilitaire
 
         #region Constructor
@@ -121,15 +141,56 @@ namespace ProjetCegep.Controleurs
         }
         #endregion MethodeCegep
 
-        public DepartementDTO[] ObtenirListeDepartement()
+        #region MethodeDepartement
+
+        public List<DepartementDTO> ObtenirListeDepartement()
         {
             if (monCegep == null)
                 return null;
-            Departement[] departements = monCegep.ObtenirListeDepartement();
-            DepartementDTO[] departementDTOs = new DepartementDTO[departements.Length];
-            for (int i = 0; i<departements.Length; i++)
-               departementDTOs[i] = new DepartementDTO(departements[i]);
-            return departementDTOs;
+
+            List<DepartementDTO> listDepartementDTOs = new List<DepartementDTO>();
+            Departement[] tabDepartement = monCegep.ObtenirListeDepartement();
+
+            foreach (Departement unDepartement in tabDepartement)
+            {
+                DepartementDTO dto = new DepartementDTO(unDepartement);
+                listDepartementDTOs.Add(dto);
+            }
+            return listDepartementDTOs;
         }
+
+        public DepartementDTO ObtenirDepartement(DepartementDTO departement)
+        {
+            foreach(DepartementDTO departementDTO in ObtenirListeDepartement())
+            {
+                if(departementDTO.No == departement.No)
+                {
+                    return departementDTO;
+                }
+                return null;
+            }
+            return null;
+        }
+
+        public bool AjouterDepartement(DepartementDTO departement)
+        {
+            newDepartement = new Departement(departement.No, departement.Nom, departement.Description);
+            return newDepartement != null;
+        }
+
+        public bool SupprimerDepartement(DepartementDTO departement)
+        {
+            foreach (Departement unDepartement in monCegep.listeDepartement)
+            {
+                if (unDepartement.No == departement.No)
+                {
+                    monCegep.listeDepartement.Remove(unDepartement);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion MethodeDepartement
     }
 }

@@ -9,7 +9,7 @@ namespace ProjetCegep.Vues
 {
    public partial class FormGestionCegep : Form
    {
-
+        #region MethodeUtilitaire
         /// <summary>
         /// Constructeur du formulaire Gestion Cégep
         /// </summary>
@@ -27,17 +27,7 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void QuitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists("Cegep.xml"))
-            {
-                File.Delete("Cegep.xml");
-            }
-            XmlSerializer leFichierCegep = new XmlSerializer(typeof(Cegep));
-            FileStream fichierLogique;
-
-            using (fichierLogique = File.OpenWrite("Cegep.xml"))
-            {
-                leFichierCegep.Serialize(fichierLogique, monCegep);
-            }
+            CegepControleur.Instance.SauvegarderDonnesFichier();
             Application.Exit();
         }
 
@@ -50,13 +40,14 @@ namespace ProjetCegep.Vues
              lbxDepartementInfoCegep.Items.Clear();
              cbxDepartementEnseignant.Items.Clear();
              if (CegepControleur.Instance.ObtenirCegep() != null)
-                 foreach (DepartementDTO departement in CegepControleur.ObtenirListeDepartement())
+                 foreach (DepartementDTO departement in CegepControleur.Instance.ObtenirListeDepartement())
                  {
                     lbxDepartement.Items.Add(departement.Nom);
                     lbxDepartementInfoCegep.Items.Add(departement.Nom);
                     cbxDepartementEnseignant.Items.Add(departement.Nom);
                  }
         }
+        #endregion
 
         #region Onglet Gestion enseignants...
 
@@ -176,23 +167,20 @@ namespace ProjetCegep.Vues
         }
         #endregion Onglet Gestion enseignants...
 
-        //Onglet Gestion départements
+        #region Onglet Gestion départements
 
         /// <summary>
-        /// Méthode qui permet d'ajouter un départemetn à la liste des départements du cégep
+        /// Méthode qui permet d'ajouter un département à la liste des départements du cégep
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnAjouterDepartement_Click(object sender, EventArgs e)
         {
-            DepartementDTO unDepartement;
 
-            unDepartement = new DepartementDTO(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
-
-            if (CegepControleur.Instance.AjouterDepartement(unDepartement))
+            if (CegepControleur.Instance.AjouterDepartement(new DepartementDTO(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text)))
             {
                 RemplirListes();
-                MessageBox.Show(unDepartement.ToString() + "\na bien été crée.");
+                MessageBox.Show("Le départements " + edtNomDepartement.Text + "\na bien été crée.");
             }
             else
             {
@@ -208,14 +196,17 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void BtnSupprimerGestionDepartement_Click(object sender, EventArgs e)
         {
-            Departement unDepartement;
+            DepartementDTO departementSelectionne = (DepartementDTO)lbxDepartement.SelectedItem;
+            if(departementSelectionne == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un département.");
+                return;
+            }
 
-            unDepartement = new Departement(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text);
-
-            if (monCegep.EnleverDepartement(unDepartement))
+            if (CegepControleur.Instance.SupprimerDepartement(departementSelectionne))
             {
                 RemplirListes();
-                MessageBox.Show(unDepartement.ToString() + "\na bien été enlevé.");
+                MessageBox.Show(departementSelectionne.Nom + "\na bien été enlevé.");
             }
             else
             {
@@ -223,6 +214,7 @@ namespace ProjetCegep.Vues
             }
             Refresh();
         }
+        #endregion
 
         #region InfoCégep
 

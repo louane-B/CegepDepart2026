@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <Cegep xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <listeDepartement />
+  <listeDepartement>
+    <Departement>
+      <listeEnseignant />
+      <No>425-RL</No>
+      <Nom>Soins Infirmier</Nom>
+      <Description>Prendre soin des patient.  </Description>
+    </Departement>
+  </listeDepartement>
   <Nom>Cégep Rivière-du-Loup</Nom>
   <Adresse>80 Frontenac</Adresse>
   <Ville>Rivière-du-Loup</Ville>
