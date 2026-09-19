@@ -159,15 +159,14 @@ namespace ProjetCegep.Controleurs
             return listDepartementDTOs;
         }
 
-        public DepartementDTO ObtenirDepartement(DepartementDTO departement)
+        public DepartementDTO ObtenirDepartement(DepartementDTO ledepartement)
         {
-            foreach(DepartementDTO departementDTO in ObtenirListeDepartement())
+            foreach(Departement departement in monCegep.ObtenirListeDepartement())
             {
-                if(departementDTO.No == departement.No)
+                if(departement.No == ledepartement.No)
                 {
-                    return departementDTO;
+                    return new DepartementDTO(departement);
                 }
-                return null;
             }
             return null;
         }
@@ -175,20 +174,20 @@ namespace ProjetCegep.Controleurs
         public bool AjouterDepartement(DepartementDTO departement)
         {
             newDepartement = new Departement(departement.No, departement.Nom, departement.Description);
-            return newDepartement != null;
+            return monCegep.AjouterDepartement(newDepartement);
         }
 
-        public bool SupprimerDepartement(DepartementDTO departement)
+        public bool SupprimerDepartement(DepartementDTO departementDTO)
         {
-            foreach (Departement unDepartement in monCegep.listeDepartement)
+            //créer un modèle temporaire avec seulement le NO
+            Departement temp = new Departement(departementDTO.No, "", "");
+
+            Departement unDepartement = monCegep.ObtenirDepartement(temp);
+            if (unDepartement.No == null)
             {
-                if (unDepartement.No == departement.No)
-                {
-                    monCegep.listeDepartement.Remove(unDepartement);
-                    return true;
-                }
+                return false;
             }
-            return false;
+            return monCegep.EnleverDepartement(unDepartement);
         }
 
         #endregion MethodeDepartement

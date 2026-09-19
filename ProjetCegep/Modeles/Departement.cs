@@ -232,12 +232,12 @@ namespace ProjetCegep.Modeles
 
         public override bool Equals(object obj)
         {
-            return (obj != null) && (obj is Departement) && Nom.Equals((obj as Departement).Nom);
+            return (obj != null) && (obj is Departement) && No.Equals((obj as Departement).No);
         }
 
         public override int GetHashCode()
         {
-            return Nom.Length;
+            return No.GetHashCode();
         }
     }
 }

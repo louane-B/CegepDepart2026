@@ -4,6 +4,7 @@ using System.IO;
 using System.Xml.Serialization;
 using ProjetCegep.Controleurs;
 using ProjetCegep.DTOs;
+using ProjetCegep.Modeles;
 
 namespace ProjetCegep.Vues
 {
@@ -180,7 +181,7 @@ namespace ProjetCegep.Vues
             if (CegepControleur.Instance.AjouterDepartement(new DepartementDTO(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text)))
             {
                 RemplirListes();
-                MessageBox.Show("Le départements " + edtNomDepartement.Text + "\na bien été crée.");
+                MessageBox.Show(edtNomDepartement + "\na bien été crée.");
             }
             else
             {
@@ -210,7 +211,7 @@ namespace ProjetCegep.Vues
             }
             else
             {
-                MessageBox.Show("Le département entré n'est pas dans la liste et n'a pas pu être enlevé.");
+                MessageBox.Show("Impossible de supprimer ce département.");
             }
             Refresh();
         }

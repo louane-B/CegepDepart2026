@@ -21,7 +21,7 @@ namespace ProjetCegep.DTOs
         public string DateEmbauche { get; set; }
         public string DateArret {  get; set; }
 
-        public EnseignantDTO(int no=0000000, string unNom="", string unPrenom="", string uneAdresse="", string uneVille="", string uneProvince="", string unCodePostal="", string unTelephone="", string unCourriel="", string uneDateEmbauche="", string uneDateArret="")
+        public EnseignantDTO(int no=0, string unNom="", string unPrenom="", string uneAdresse="", string uneVille="", string uneProvince="", string unCodePostal="", string unTelephone="", string unCourriel="", string uneDateEmbauche="", string uneDateArret="")
         {
             NoEmploye = no;
             Nom = unNom;
@@ -53,7 +53,7 @@ namespace ProjetCegep.DTOs
 
         public override string ToString()
         {
-            return $"{NoEmploye} - {Nom} {Prenom}; Contact: {Telephone}; email: {Courriel}";
+            return $"{NoEmploye} - {Nom} {Prenom} ({Telephone})";
         }
     }
 }
