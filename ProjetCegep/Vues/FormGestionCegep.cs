@@ -143,17 +143,14 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void BtnSupprimerEnseignant_Click(object sender, EventArgs e)
         {
-            Departement monDepartement, leDepartementAChercher;
+            DepartementDTO leDepartementAChercher = CegepControleur.Instance.ObtenirDepartement(new DepartementDTO("", cbxDepartementEnseignant.Text, ""));
 
-            leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
 
-            monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
-
-            if (monDepartement != null)
+            if (leDepartementAChercher != null)
             {
-                monDepartement.EnleverEnseignant(new Enseignant(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text));
+                CegepControleur.Instance.SupprimerEnseignant(leDepartementAChercher,new EnseignantDTO(int.Parse(edtNoEmploye.Text), "", "", "", "", "", "", "", "", "", ""));
                 MessageBox.Show("L'enseignant " + edtNoEmploye.Text + " à été supprimé !!!");
-                AfficherListeEnseignantGestionEnseignant(monDepartement);
+                AfficherListeEnseignantGestionEnseignant(leDepartementAChercher);
             }
             else
             {
