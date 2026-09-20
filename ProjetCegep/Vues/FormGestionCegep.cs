@@ -55,13 +55,13 @@ namespace ProjetCegep.Vues
         /// <summary>
         /// Méthode qui permet de mettre à jour les différentes listes d'enseignants
         /// </summary>
-        /// <param name="unDepartement">Le département qui à été sélectionné</param>
-        public void AfficherListeEnseignantGestionEnseignant(Departement unDepartement)
+        /// <param name="departementDTO">Le département qui à été sélectionné</param>
+        public void AfficherListeEnseignantGestionEnseignant(DepartementDTO departementDTO)
         {
             lbxEnseignantsSaisie.Items.Clear();
-            foreach (Enseignant enseignant in unDepartement.ObtenirListeEnseignant())
+            foreach (EnseignantDTO enseignantDTO in CegepControleur.Instance.ObtenirListeEnseignant(departementDTO))
             {
-                lbxEnseignantsSaisie.Items.Add(enseignant.NoEmploye + "  " + enseignant.Prenom + " " + enseignant.Nom);
+                lbxEnseignantsSaisie.Items.Add(enseignantDTO);
             }
         }
 

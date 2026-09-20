@@ -191,5 +191,32 @@ namespace ProjetCegep.Controleurs
         }
 
         #endregion MethodeDepartement
+
+        #region MethodeEnseignant
+
+        public List<EnseignantDTO> ObtenirListeEnseignant(DepartementDTO departementDTO)
+        {
+            if(departementDTO == null)
+                return null
+
+            // Departement Temporaire
+            Departement temp = new Departement(departementDTO.No, "", "");
+            // Trouver le vrai Departement liés au param departementDTO
+            Departement trueDepartement = monCegep.ObtenirDepartement(temp);
+
+            if (trueDepartement == null)
+                return null;
+
+            List<EnseignantDTO> listEnseignantDTOs = new List<EnseignantDTO>();
+            Enseignant[] tabEnseignant = trueDepartement.ObtenirListeEnseignant;
+
+            foreach(Enseignant unEnseignant in tabEnseignant)
+            {
+                listEnseignantDTOs.Add(new EnseignantDTO(unEnseignant));
+            }
+            return listEnseignantDTOs;
+        }
+
+        #endregion
     }
 }
