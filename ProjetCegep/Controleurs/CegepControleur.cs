@@ -162,7 +162,7 @@ namespace ProjetCegep.Controleurs
         {
             foreach(Departement departement in monCegep.ObtenirListeDepartement())
             {
-                if(departement.No == ledepartement.No)
+                if(departement.Nom == ledepartement.Nom)
                 {
                     return new DepartementDTO(departement);
                 }
@@ -178,11 +178,11 @@ namespace ProjetCegep.Controleurs
 
         public bool SupprimerDepartement(DepartementDTO departementDTO)
         {
-            //créer un modèle temporaire avec seulement le NO
-            Departement temp = new Departement(departementDTO.No, "", "");
+            //créer un modèle temporaire avec seulement le Nom
+            Departement temp = new Departement("", departementDTO.Nom, "");
 
             Departement unDepartement = monCegep.ObtenirDepartement(temp);
-            if (unDepartement.No == null)
+            if (unDepartement.Nom == null)
             {
                 return false;
             }
@@ -195,25 +195,27 @@ namespace ProjetCegep.Controleurs
 
         public List<EnseignantDTO> ObtenirListeEnseignant(DepartementDTO departementDTO)
         {
-            if(departementDTO == null)
-                return null
-
-            // Departement Temporaire
-            Departement temp = new Departement(departementDTO.No, "", "");
-            // Trouver le vrai Departement liés au param departementDTO
-            Departement trueDepartement = monCegep.ObtenirDepartement(temp);
-
-            if (trueDepartement == null)
-                return null;
-
-            List<EnseignantDTO> listEnseignantDTOs = new List<EnseignantDTO>();
-            Enseignant[] tabEnseignant = trueDepartement.ObtenirListeEnseignant;
-
-            foreach(Enseignant unEnseignant in tabEnseignant)
+            if (departementDTO != null)
             {
-                listEnseignantDTOs.Add(new EnseignantDTO(unEnseignant));
+                // Departement Temporaire
+                Departement temp = new Departement("", departementDTO.Nom, "");
+                // Trouver le vrai Departement liés au param departementDTO
+                Departement trueDepartement = monCegep.ObtenirDepartement(temp);
+
+                if (trueDepartement == null)
+                    return null;
+
+                List<EnseignantDTO> listEnseignantDTOs = new List<EnseignantDTO>();
+                Enseignant[] tabEnseignant = trueDepartement.ObtenirListeEnseignant();
+
+                foreach (Enseignant unEnseignant in tabEnseignant)
+                {
+                    listEnseignantDTOs.Add(new EnseignantDTO(unEnseignant));
+                }
+                return listEnseignantDTOs;
             }
-            return listEnseignantDTOs;
+
+            return null;
         }
 
         public EnseignantDTO ObtenirEnseignant(DepartementDTO departementDTO, EnseignantDTO enseignantDTO)
@@ -237,7 +239,7 @@ namespace ProjetCegep.Controleurs
                 return false;
 
             // Departement Temporaire
-            Departement temp = new Departement(departementDTO.No, "", "");
+            Departement temp = new Departement("", departementDTO.Nom, "");
             // Trouver le vrai Departement liés au param departementDTO
             Departement trueDepartement = monCegep.ObtenirDepartement(temp);
 
@@ -246,6 +248,44 @@ namespace ProjetCegep.Controleurs
 
             Enseignant newEnseignant = new Enseignant(enseignantDTO.NoEmploye, enseignantDTO.Prenom, enseignantDTO.Nom, enseignantDTO.Adresse, enseignantDTO.Ville, enseignantDTO.Province, enseignantDTO.CodePostal, enseignantDTO.Telephone, enseignantDTO.Courriel, enseignantDTO.DateEmbauche, enseignantDTO.DateArret);
             return trueDepartement.AjouterEnseignant(newEnseignant);
+        }
+
+        public bool ModifierEnseignant(DepartementDTO departementDTO, EnseignantDTO enseignantDTO)
+        {
+            Departement departementModel = ObtenirDepartement(departementDTO);
+            if (departementModel == null)
+                return false;
+
+            Enseignant enseignantModel = departementModel.ObtenirEnseignant(new Enseignant(enseignantDTO.NoEmploye, "", "", "", "", "", "", "", "", "", ""));
+            if (enseignantModel == null)
+                return false;
+
+            if(enseignantModel.Prenom != enseignantDTO.Prenom ||
+                enseignantModel.Nom != enseignantDTO.Nom ||
+                enseignantModel.Adresse != enseignantDTO.Adresse ||
+                enseignantModel.Ville != enseignantDTO.Ville ||
+                enseignantModel.Province != enseignantDTO.Province ||
+                enseignantModel.CodePostal != enseignantDTO.CodePostal ||
+                enseignantModel.Telephone != enseignantDTO.Telephone ||
+                enseignantModel.Courriel != enseignantDTO.Courriel ||
+                enseignantModel.DateEmbauche != enseignantDTO.DateEmbauche ||
+                enseignantModel.DateArret != enseignantDTO.DateArret)
+            {
+                enseignantModel.Prenom = enseignantDTO.Prenom;
+                enseignantModel.Nom = enseignantDTO.Nom;
+                enseignantModel.Adresse = enseignantDTO.Adresse;
+                enseignantModel.Ville = enseignantDTO.Ville;
+                enseignantModel.Province = enseignantDTO.Province;
+                enseignantModel.CodePostal = enseignantDTO.CodePostal;
+                enseignantModel.Telephone = enseignantDTO.Telephone;
+                enseignantModel.Courriel = enseignantDTO.Courriel;
+                enseignantModel.DateEmbauche = enseignantDTO.DateEmbauche;
+                enseignantModel.DateArret = enseignantDTO.DateArret;
+
+                return true;
+            }
+            return false;
+
         }
 
         #endregion
