@@ -33,7 +33,7 @@ namespace ProjetCegep.Controleurs
         {
             get
             {
-                if(Instance == null)
+                if(instance == null)
                 {
                     instance = new CegepControleur();
                 }
