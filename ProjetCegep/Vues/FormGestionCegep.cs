@@ -72,15 +72,23 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void BtnAjouterEnseignant_Click(object sender, EventArgs e)
         {
-            Departement monDepartement, leDepartementAChercher;
+            DepartementDTO monDepartement ,leDepartementAChercher;
 
-            leDepartementAChercher = new Departement("", cbxDepartementEnseignant.Text, "");
 
-            monDepartement = monCegep.ObtenirDepartement(leDepartementAChercher);
+            leDepartementAChercher = new DepartementDTO( "",cbxDepartementEnseignant.Text, "");
+
+            foreach(DepartementDTO dtoDep in CegepControleur.Instance.ObtenirListeDepartement())
+            {
+                if(dtoDep.Nom == leDepartementAChercher.Nom)
+                {
+                    monDepartement = dtoDep;
+                    break;
+                }
+            }
 
             if (monDepartement != null)
             {
-                monDepartement.AjouterEnseignant(new Enseignant(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text));
+                CegepControleur.Instance.AjouterEnseignant(monDepartement,new EnseignantDTO(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text));
 
                 AfficherListeEnseignantGestionEnseignant(monDepartement);
             }

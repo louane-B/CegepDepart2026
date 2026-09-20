@@ -18,7 +18,6 @@ namespace ProjetCegep.Controleurs
         /// 
         /// </summary>
         private Cegep monCegep;
-        private Departement newDepartement;
 
         /// <summary>
         /// 
@@ -173,7 +172,7 @@ namespace ProjetCegep.Controleurs
 
         public bool AjouterDepartement(DepartementDTO departement)
         {
-            newDepartement = new Departement(departement.No, departement.Nom, departement.Description);
+            Departement newDepartement = new Departement(departement.No, departement.Nom, departement.Description);
             return monCegep.AjouterDepartement(newDepartement);
         }
 
@@ -230,6 +229,23 @@ namespace ProjetCegep.Controleurs
                 }
             }
             return null;
+        }
+
+        public bool AjouterEnseignant(DepartementDTO departementDTO, EnseignantDTO enseignantDTO)
+        {
+            if (departementDTO == null)
+                return false;
+
+            // Departement Temporaire
+            Departement temp = new Departement(departementDTO.No, "", "");
+            // Trouver le vrai Departement liés au param departementDTO
+            Departement trueDepartement = monCegep.ObtenirDepartement(temp);
+
+            if (trueDepartement == null)
+                return false;
+
+            Enseignant newEnseignant = new Enseignant(enseignantDTO.NoEmploye, enseignantDTO.Prenom, enseignantDTO.Nom, enseignantDTO.Adresse, enseignantDTO.Ville, enseignantDTO.Province, enseignantDTO.CodePostal, enseignantDTO.Telephone, enseignantDTO.Courriel, enseignantDTO.DateEmbauche, enseignantDTO.DateArret);
+            return trueDepartement.AjouterEnseignant(newEnseignant);
         }
 
         #endregion
