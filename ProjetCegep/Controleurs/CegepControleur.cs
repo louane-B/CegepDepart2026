@@ -217,6 +217,21 @@ namespace ProjetCegep.Controleurs
             return listEnseignantDTOs;
         }
 
+        public EnseignantDTO ObtenirEnseignant(DepartementDTO departementDTO, EnseignantDTO enseignantDTO)
+        {
+            if (departementDTO == null)
+                return null;
+
+            foreach(EnseignantDTO dtoProf in ObtenirListeEnseignant(departementDTO))
+            {
+                if (dtoProf.NoEmploye == enseignantDTO.NoEmploye)
+                {
+                    return dtoProf;
+                }
+            }
+            return null;
+        }
+
         #endregion
     }
 }
