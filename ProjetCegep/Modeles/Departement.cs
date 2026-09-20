@@ -237,7 +237,7 @@ namespace ProjetCegep.Modeles
 
         public override int GetHashCode()
         {
-            return Nom.Length;
+            return Nom.GetHashCode();
         }
     }
 }
