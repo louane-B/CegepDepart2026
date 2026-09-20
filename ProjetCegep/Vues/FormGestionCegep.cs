@@ -120,12 +120,12 @@ namespace ProjetCegep.Vues
 
             if (monDepartementDTO != null)
             {
-                EnseignantDTO enseignantModifieDTO = new EnseignantDTO(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text, edtDateEmbauche.Text, edtDateArret.Text);
+                EnseignantDTO enseignantModifieDTO = new EnseignantDTO(int.Parse(edtNoEmploye.Text), edtPrenomEnseignant.Text, edtNomEnseignant.Text, edtAdresseEnseignant.Text, edtVilleEnseignant.Text, EdtProvinceEnseignant.Text, edtCodePostalEnseignant.Text, edtTelephoneEnseignant.Text, edtCourrielEnseignant.Text, txtDateEmbauche.Text, txtDateArret.Text);
 
                 bool modifie = CegepControleur.Instance.ModifierEnseignant(monDepartementDTO, enseignantModifieDTO);
 
                 if (modifie)
-                    AfficherListeEnseignantGestionEnseignant(monDepartement);
+                    AfficherListeEnseignantGestionEnseignant(monDepartementDTO);
                 else
                     MessageBox.Show("Impossible de modifier l'enseignant.");
                 
@@ -261,5 +261,6 @@ namespace ProjetCegep.Vues
         }
 
         #endregion InfoCegep
+
     }
 }

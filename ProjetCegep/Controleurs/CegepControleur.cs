@@ -252,7 +252,7 @@ namespace ProjetCegep.Controleurs
 
         public bool ModifierEnseignant(DepartementDTO departementDTO, EnseignantDTO enseignantDTO)
         {
-            Departement departementModel = ObtenirDepartement(departementDTO);
+            Departement departementModel = monCegep.ObtenirDepartement(new Departement("", departementDTO.Nom, ""));
             if (departementModel == null)
                 return false;
 
