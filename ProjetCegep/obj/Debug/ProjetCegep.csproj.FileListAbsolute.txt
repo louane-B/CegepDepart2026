@@ -3,3 +3,9 @@ C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\D
 C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.Vues.FormGestionCegep.resources
 C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.csproj.GenerateResource.cache
 C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.csproj.CoreCompileInputs.cache
+C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\bin\Debug\ProjetCegep.exe.config
+C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\bin\Debug\ProjetCegep.xml
+C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\bin\Debug\ProjetCegep.exe
+C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\bin\Debug\ProjetCegep.pdb
+C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.exe
+C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.pdb

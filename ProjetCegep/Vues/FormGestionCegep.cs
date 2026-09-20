@@ -1,10 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
-using System.IO;
-using System.Xml.Serialization;
-using ProjetCegep.Controleurs;
+﻿using ProjetCegep.Controleurs;
 using ProjetCegep.DTOs;
 using ProjetCegep.Modeles;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ProjetCegep.Vues
 {
@@ -37,16 +38,22 @@ namespace ProjetCegep.Vues
         /// </summary>
         public void RemplirListes()
         {
-             lbxDepartement.Items.Clear();
-             lbxDepartementInfoCegep.Items.Clear();
-             cbxDepartementEnseignant.Items.Clear();
-             if (CegepControleur.Instance.ObtenirCegep() != null)
-                 foreach (DepartementDTO departement in CegepControleur.Instance.ObtenirListeDepartement())
-                 {
-                    lbxDepartement.Items.Add(departement.Nom);
-                    lbxDepartementInfoCegep.Items.Add(departement.Nom);
-                    cbxDepartementEnseignant.Items.Add(departement.Nom);
-                 }
+             lbxDepartement.DataSource = null;
+             lbxDepartementInfoCegep.DataSource = null;
+             cbxDepartementEnseignant.DataSource = null;
+            if (CegepControleur.Instance.ObtenirCegep() != null)
+            {
+                List<DepartementDTO> liste = CegepControleur.Instance.ObtenirListeDepartement();
+
+                lbxDepartement.DataSource = liste;
+                lbxDepartement.DisplayMember = "Nom";
+
+                lbxDepartementInfoCegep.DataSource = liste;
+                lbxDepartementInfoCegep.DisplayMember = "Nom";
+
+                cbxDepartementEnseignant.DataSource = liste;
+                cbxDepartementEnseignant.DisplayMember = "Nom";
+            }
         }
         #endregion
 
@@ -59,6 +66,12 @@ namespace ProjetCegep.Vues
         public void AfficherListeEnseignantGestionEnseignant(DepartementDTO departementDTO)
         {
             lbxEnseignantsSaisie.Items.Clear();
+
+            var liste = CegepControleur.Instance.ObtenirListeEnseignant(departementDTO);
+
+            if (liste == null)
+                return; // ou afficher un message
+
             foreach (EnseignantDTO enseignantDTO in CegepControleur.Instance.ObtenirListeEnseignant(departementDTO))
             {
                 lbxEnseignantsSaisie.Items.Add(enseignantDTO);
@@ -114,9 +127,8 @@ namespace ProjetCegep.Vues
         /// <param name="e"></param>
         private void BtnModifierEnseignant_Click(object sender, EventArgs e)
         {
-            DepartementDTO departementAChercher = new DepartementDTO("", cbxDepartementEnseignant.Text, "");
-
-           DepartementDTO monDepartementDTO = CegepControleur.Instance.ObtenirDepartement(departementAChercher);
+            // Récupère le vrai DTO du ComboBox
+            DepartementDTO monDepartementDTO = (DepartementDTO)cbxDepartementEnseignant.SelectedItem;
 
             if (monDepartementDTO != null)
             {
@@ -172,7 +184,7 @@ namespace ProjetCegep.Vues
             if (CegepControleur.Instance.AjouterDepartement(new DepartementDTO(edtNoDepartement.Text, edtNomDepartement.Text, edtDescriptionDepartement.Text)))
             {
                 RemplirListes();
-                MessageBox.Show(edtNomDepartement + "\na bien été crée.");
+                MessageBox.Show(edtNomDepartement.Text + "\na bien été crée.");
             }
             else
             {
