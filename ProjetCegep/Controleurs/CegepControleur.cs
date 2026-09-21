@@ -263,10 +263,8 @@ namespace ProjetCegep.Controleurs
         {
             if (departementDTO != null)
             {
-                // Departement Temporaire utilisé pour la comparaison (par nom)
-                Departement temp = new Departement("", departementDTO.Nom, "");
                 // Obtient le vrai département dans le modèle
-                Departement trueDepartement = monCegep.ObtenirDepartement(temp);
+                Departement trueDepartement = monCegep.ObtenirDepartement(new Departement("", departementDTO.Nom, ""));
 
                 if (trueDepartement == null)
                     return null;
