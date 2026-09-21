@@ -208,12 +208,12 @@ namespace ProjetCegep.Controleurs
         public DepartementDTO ObtenirDepartement(DepartementDTO ledepartement)
         {
             // Parcourt la liste des départements du cégep
-            foreach (Departement departement in monCegep.ObtenirListeDepartement())
+            foreach (DepartementDTO departementdto in ObtenirListeDepartement())
             {
                 // Comparaison par nom
-                if (departement.Nom == ledepartement.Nom)
+                if (departementdto.Nom == ledepartement.Nom)
                 {
-                    return new DepartementDTO(departement);
+                    return departementdto;
                 }
             }
             return null;
@@ -240,7 +240,7 @@ namespace ProjetCegep.Controleurs
         public bool SupprimerDepartement(DepartementDTO departementDTO)
         {
             // Recherche du département dans le modèle (comparaison par nom)
-            Departement unDepartement = monCegep.ObtenirDepartement(new Departement("", departementDTO.Nom, ""));
+            Departement unDepartement = monCegep.ObtenirDepartement(new Departement(departementDTO.No, departementDTO.Nom, departementDTO.Description));
             // Vérifie si le département existe
             if (unDepartement.Nom == null)
             {
@@ -264,7 +264,7 @@ namespace ProjetCegep.Controleurs
             if (departementDTO != null)
             {
                 // Obtient le vrai département dans le modèle
-                Departement trueDepartement = monCegep.ObtenirDepartement(new Departement("", departementDTO.Nom, ""));
+                Departement trueDepartement = monCegep.ObtenirDepartement(new Departement(departementDTO.No, departementDTO.Nom, departementDTO.Description));
 
                 if (trueDepartement == null)
                     return null;
@@ -319,7 +319,7 @@ namespace ProjetCegep.Controleurs
                 return false;
 
             // Département temporaire pour la comparaison
-            Departement temp = new Departement("", departementDTO.Nom, "");
+            Departement temp = new Departement(departementDTO.No, departementDTO.Nom, departementDTO.Description);
             // Obtient le vrai département
             Departement trueDepartement = monCegep.ObtenirDepartement(temp);
 

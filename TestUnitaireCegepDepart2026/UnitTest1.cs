@@ -30,4 +30,32 @@ namespace TestUnitaireCegepDepart2026
             Assert.AreEqual("Cegep Test", cegep.Nom);
         }
 
+        [TestMethod]
+        public void CreerCegep_DoitEchouerSiNomVide()
+        {
+            // Arrange
+            CegepDTO dto = new CegepDTO("", "123 Rue", "VilleTest", "QC", "G0L1B0", "418-555-0000", "test@cegep.com");
+
+            // Act
+            bool resultat = CegepControleur.Instance.CreerCegep(dto);
+
+            // Assert
+            Assert.IsFalse(resultat);
+        }
+
+        [TestMethod]
+        public void CreerCegep_DoitEchouerSiCegepExisteDeja()
+        {
+            // Arrange
+            CegepControleur.Instance.CreerCegep(new CegepDTO("Cegep Test"));
+
+            // Act
+            bool resultat = CegepControleur.Instance.CreerCegep(new CegepDTO("Cegep Test"));
+
+            // Assert
+            Assert.IsFalse(resultat);
+        }
+    }
+}
+
         
