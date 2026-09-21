@@ -137,7 +137,10 @@ namespace ProjetCegep.Vues
                 bool modifie = CegepControleur.Instance.ModifierEnseignant(monDepartementDTO, enseignantModifieDTO);
 
                 if (modifie)
+                {
                     AfficherListeEnseignantGestionEnseignant(monDepartementDTO);
+                    MessageBox.Show("L'enseignant " + edtNoEmploye.Text + "\n a bien été modifié.");
+                }
                 else
                     MessageBox.Show("Impossible de modifier l'enseignant.");
                 
@@ -241,7 +244,7 @@ namespace ProjetCegep.Vues
         private void BtnModifierCegep_Click(object sender, EventArgs e)
         {
             if (CegepControleur.Instance.ModifierCegep(new CegepDTO(edtNomCegep.Text, edtAdresseCegep.Text, edtVilleCegep.Text, edtProvinceCegep.Text, edtCodePostalCegep.Text, edtTelephoneCegep.Text, edtCourrielCegep.Text)))
-                MessageBox.Show(edtNomCegep + "\n a bien été modifié.");
+                MessageBox.Show(edtNomCegep.Text + "\n a bien été modifié.");
         }
 
         /// <summary>
