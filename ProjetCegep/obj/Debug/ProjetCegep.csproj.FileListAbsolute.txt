@@ -1,5 +1,0 @@
-C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.csproj.AssemblyReference.cache
-C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.Properties.Resources.resources
-C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.Vues.FormGestionCegep.resources
-C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.csproj.GenerateResource.cache
-C:\Users\louan\Documents\progNative\projet2026\CegepDepart2026\ProjetCegep\obj\Debug\ProjetCegep.csproj.CoreCompileInputs.cache
