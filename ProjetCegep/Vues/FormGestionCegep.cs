@@ -1,6 +1,5 @@
 ﻿using ProjetCegep.Controleurs;
 using ProjetCegep.DTOs;
-using ProjetCegep.Modeles;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -72,7 +71,7 @@ namespace ProjetCegep.Vues
             if (liste == null)
                 return; // ou afficher un message
 
-            foreach (EnseignantDTO enseignantDTO in CegepControleur.Instance.ObtenirListeEnseignant(departementDTO))
+            foreach (EnseignantDTO enseignantDTO in liste)
             {
                 lbxEnseignantsSaisie.Items.Add(enseignantDTO);
             }
