@@ -1,6 +1,5 @@
 ﻿using ProjetCegep.Controleurs;
 using ProjetCegep.DTOs;
-using ProjetCegep.Modeles;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -67,12 +66,12 @@ namespace ProjetCegep.Vues
         {
             lbxEnseignantsSaisie.Items.Clear();
 
-            var liste = CegepControleur.Instance.ObtenirListeEnseignant(departementDTO);
+            var liste = CegepControleur.Instance.ObtenirListeEnseignant(departementDTO); 
 
             if (liste == null)
                 return; // ou afficher un message
 
-            foreach (EnseignantDTO enseignantDTO in CegepControleur.Instance.ObtenirListeEnseignant(departementDTO))
+            foreach (EnseignantDTO enseignantDTO in liste)
             {
                 lbxEnseignantsSaisie.Items.Add(enseignantDTO);
             }
@@ -139,7 +138,7 @@ namespace ProjetCegep.Vues
                 if (modifie)
                 {
                     AfficherListeEnseignantGestionEnseignant(monDepartementDTO);
-                    MessageBox.Show("L'enseignant " + edtNoEmploye.Text + "\n a bien été modifié.");
+                    MessageBox.Show("L'enseignant " + edtPrenomEnseignant.Text + edtNomEnseignant.Text + "\n a bien été modifié.");
                 }
                 else
                     MessageBox.Show("Impossible de modifier l'enseignant.");
