@@ -66,7 +66,7 @@ namespace ProjetCegep.Vues
         {
             lbxEnseignantsSaisie.Items.Clear();
 
-            var liste = CegepControleur.Instance.ObtenirListeEnseignant(departementDTO);
+            var liste = CegepControleur.Instance.ObtenirListeEnseignant(departementDTO); 
 
             if (liste == null)
                 return; // ou afficher un message
@@ -138,7 +138,7 @@ namespace ProjetCegep.Vues
                 if (modifie)
                 {
                     AfficherListeEnseignantGestionEnseignant(monDepartementDTO);
-                    MessageBox.Show("L'enseignant " + edtNoEmploye.Text + "\n a bien été modifié.");
+                    MessageBox.Show("L'enseignant " + edtPrenomEnseignant.Text + edtNomEnseignant.Text + "\n a bien été modifié.");
                 }
                 else
                     MessageBox.Show("Impossible de modifier l'enseignant.");
